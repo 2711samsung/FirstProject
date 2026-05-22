@@ -1,0 +1,175 @@
+pricelist = {}
+shoplist = {}
+help = ('Available programs: \n'
+'1. shop list (sl)\n'
+'2. price list (pl)\n'
+'3. calculator(cl)\n'
+'4. help\n' 
+'5. quit')
+
+def shop_list():
+    while True:
+
+        command = input("What do you want to do with your shop list?\n" 
+                        "(add/search/list/update/delete/quit): ")
+    
+        if command == 'add':
+            while True:
+                item = input("Enter item: ").lower()
+                if item == 'stop':
+                    break
+                while True:
+                    try:
+                        quantity = int(input("Enter quantity: "))
+                    except ValueError:
+                        print("Invalid quantity. Please enter a number.")
+                        continue
+                    else:
+                        shoplist[item] = quantity
+                        print(f"{item} added with quantity {quantity}.")
+                        break
+
+        elif command == 'search':
+            item = input("Enter item to search: ").lower()
+            if item in shoplist:
+                print(f"Item found: {item} - {shoplist[item]}")
+            else:
+                print("Item not found.")
+
+        elif command == 'list':
+            if shoplist:
+                print("Shop List:")
+                for item, quantity in shoplist.items():
+                    print(f"{item} - {quantity}")
+            else:
+                print("your shop list is empty.")
+    
+        elif command == 'update':
+            item = input("Enter item to update: ").lower()
+            if item in shoplist:
+                new_quantity = input("Enter new quantity: ").lower()
+                shoplist[item] = new_quantity
+                print(f"Item {item} updated with new quantity {new_quantity}.")
+            else:
+                print("Item not found.")
+
+        elif command == 'delete':
+            item = input("Enter item to delete: ").lower()
+            if item in shoplist:
+                del shoplist[item]
+                print(f"Item {item} was deleted.")
+            else:
+                print("Item not found.")
+
+        elif command == 'quit':
+            print("Exiting the shop manager.")
+            break
+
+        else:
+            print("Invalid command. Please try again.")
+
+def price_list():
+    while True:
+
+        command = input("What do you want to do?\n" 
+                        "(add/search/list/update/delete/quit): ")
+    
+        if command == 'add':
+            while True:
+                item = input("Enter item: ").lower()
+                if item == 'stop':
+                    break
+                while True:
+                    try:
+                        price = float(input("Enter price: "))
+                    except ValueError:
+                        print("Invalid price. Please enter a number.")
+                        continue
+                    else:
+                        pricelist[item] = price
+                        print(f"{item} added with price {price}.")
+                        break
+
+                    
+        elif command == 'search':
+            item = input("Enter item to search: ").lower()
+            if item in pricelist:
+                print(f"Item found: {item} - {pricelist[item]}")
+            else:
+                print("Item not found.")
+
+        elif command == 'list':
+            if pricelist:
+                print("Price List:")
+                for item, price in pricelist.items():
+                    print(f"{item} - {price}")
+            else:
+                print("your price list is empty.")
+    
+        elif command == 'update':
+            item = input("Enter item to update: ").lower()
+            if item in pricelist:
+                new_price = input("Enter new price: ").lower()
+                pricelist[item] = new_price
+                print(f"Item {item} updated with new price {new_price}.")
+            else:
+                print("Item not found.")
+
+        elif command == 'delete':
+            item = input("Enter item to delete: ").lower()
+            if item in pricelist:
+                del pricelist[item]
+                print(f"Item {item} was deleted.")
+            else:
+                print("Item not found.")
+
+        elif command == 'quit':
+            print("Exiting the price manager.")
+            break
+
+        else:
+            print("Invalid command. Please try again.")
+
+def calculator():
+    while True:
+        command = input("in development\n"
+        "Enter a mathematical expression to evaluate (or 'quit' to exit): ")
+        
+        if command.lower() == 'quit':
+            print("Exiting the calculator.")
+            break
+        
+        try:
+            result = eval(command)
+            print(f"Result: {result}")
+        except Exception as e:
+            print(f"Error evaluating expression: {e}")
+
+
+print("Welcome to the Price Manager!\n"
+      "Type 'help' to see available commands.")
+
+while True:
+    
+    command = input("What you want do?\n").lower()
+    if command == 'pl'.lower():
+        while True:
+            price_list()
+            break
+    
+    elif command == 'sl'.lower():
+        while True:
+            shop_list()
+            break
+    
+    elif command == 'help'.lower():
+        print(help)
+
+    elif command == 'cl'.lower():
+        while True:
+            calculator()
+            break
+    
+    elif command == 'quit'.lower():
+        print("Exiting the program. Goodbye!")
+        break
