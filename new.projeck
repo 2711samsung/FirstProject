@@ -131,19 +131,8 @@ def price_list():
             print("Invalid command. Please try again.")
 
 def calculator():
-    while True:
-        command = input("in development\n"
-        "Enter a mathematical expression to evaluate (or 'quit' to exit): ")
-        
-        if command.lower() == 'quit':
-            print("Exiting the calculator.")
-            break
-        
-        try:
-            result = eval(command)
-            print(f"Result: {result}")
-        except Exception as e:
-            print(f"Error evaluating expression: {e}")
+    print('in development')
+    
 
 
 print("Welcome to the Price Manager!\n"
