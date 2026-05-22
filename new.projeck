@@ -116,6 +116,7 @@ def price_list():
                 print("Item not found.")
 
         elif command == 'delete':
+            print(f"Your pricelist: {pricelist}")
             item = input("Enter item to delete: ").lower()
             if item in pricelist:
                 del pricelist[item]
@@ -131,20 +132,20 @@ def price_list():
             print("Invalid command. Please try again.")
 
 def calculator():
-    while True:
-        command = input("in development\n"
-        "Enter a mathematical expression to evaluate (or 'quit' to exit): ")
-        
-        if command.lower() == 'quit':
-            print("Exiting the calculator.")
-            break
-        
-        try:
-            result = eval(command)
-            print(f"Result: {result}")
-        except Exception as e:
-            print(f"Error evaluating expression: {e}")
+    all_prises = []
 
+
+    for k1, v1 in pricelist.items():
+        for k2, v2 in shoplist.items():
+            if k1 == k2:
+                total_price = v1 * v2
+                all_prises.append(total_price) 
+                print(f"{k1}: {v1} euro * {v2} = {total_price}")
+    print(f"Total price: {sum(all_prises)} Euro")
+
+    
+   
+       
 
 print("Welcome to the Price Manager!\n"
       "Type 'help' to see available commands.")
