@@ -42,8 +42,14 @@ while True:
             print("Contact not found.")
 
     elif command == 'quit':
-        print("Exiting the contact manager. Goodbye!")
+        print("Your contact book:")
+        if contact:
+            for name, phone in contact.items():
+                print(f"{name}: {phone}")
+        print("Goodbye!")
         break
+
+        
     else:
         print("Invalid command. Please try again.")
     
