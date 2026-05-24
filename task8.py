@@ -19,29 +19,23 @@ def power(num1, num2):
 def perform_calculator(command, num1, num2):
     operations = command
     if operations == 'add':
-            result = add(num1, num2)
-            print(f"{num1} + {num2} = {result}")
+            return add(num1, num2)
 
     elif operations == 'subtract':
-            result = subtract(num1, num2)
-            print(f"{num1} - {num2} = {result}")
+            return subtract(num1, num2)
 
     elif operations == 'multiply':
-            result = multiply(num1, num2)
-            print(f"{num1} * {num2} = {result}")
+            return multiply(num1, num2)
 
     elif operations == 'divide':
-            result = divide(num1, num2)
-            if result is not None:
-                print(f"{num1} / {num2} = {result}")
-            else:
-                print("Error: Division by zero is not allowed.")
+            return divide(num1, num2)
 
     elif operations == 'power':
-            result = power(num1, num2)
-            print(f"{num1} ^ {num2} = {result}")
+            return power(num1, num2)
+
 while True:
     command = input("Choose operation (add/subtract/multiply/divide/power/quit): ")
+    
     if command in ['add', 'subtract', 'multiply', 'divide', 'power']:
         try:
             num1 = float(input("Enter first number: "))
@@ -50,10 +44,24 @@ while True:
             print("Please enter a number.")
             continue
 
-        perform_calculator(command, num1, num2)
+        result = perform_calculator(command, num1, num2)
+        
+        if result is None:
+            print("Error: Division by zero is not allowed.")
+        elif command == 'add':
+            print(f"{num1} + {num2} = {result}")
+        elif command == 'subtract':
+            print(f"{num1} - {num2} = {result}")
+        elif command == 'multiply':
+            print(f"{num1} * {num2} = {result}")
+        elif command == 'divide':
+            print(f"{num1} / {num2} = {result}")
+        elif command == 'power':
+            print(f"{num1} ** {num2} = {result}")
 
     elif command == 'quit':
         print("Goodbye!")
         break
+    
     else:
         print("Invalid operation. Please choose a valid operation.")
