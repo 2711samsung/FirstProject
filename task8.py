@@ -8,16 +8,14 @@ def multiply(num1, num2):
     return num1 * num2
 
 def divide(num1, num2):
-    if num2 != 0:
-        return num1 / num2
-    else:
+    if num2 == 0:
         return None
+    return num1 / num2
 
 def power(num1, num2):
     return num1 ** num2
 
-def perform_calculator(command, num1, num2):
-    operations = command
+def perform_calculator(operations, num1, num2):
     if operations == 'add':
             return add(num1, num2)
 
@@ -32,11 +30,19 @@ def perform_calculator(command, num1, num2):
 
     elif operations == 'power':
             return power(num1, num2)
+    
+symbols = {
+    "add": "+",
+    "subtract": "-",
+    "multiply": "*",
+    "divide": "/",
+    "power": "**"
+}
 
 while True:
-    command = input("Choose operation (add/subtract/multiply/divide/power/quit): ")
+    operations = input("Choose operation (add/subtract/multiply/divide/power/quit): ")
     
-    if command in ['add', 'subtract', 'multiply', 'divide', 'power']:
+    if operations in ['add', 'subtract', 'multiply', 'divide', 'power']:
         try:
             num1 = float(input("Enter first number: "))
             num2 = float(input("Enter second number: "))
@@ -44,22 +50,17 @@ while True:
             print("Please enter a number.")
             continue
 
-        result = perform_calculator(command, num1, num2)
-        
+        result = perform_calculator(operations, num1, num2)
+
         if result is None:
             print("Error: Division by zero is not allowed.")
-        elif command == 'add':
-            print(f"{num1} + {num2} = {result}")
-        elif command == 'subtract':
-            print(f"{num1} - {num2} = {result}")
-        elif command == 'multiply':
-            print(f"{num1} * {num2} = {result}")
-        elif command == 'divide':
-            print(f"{num1} / {num2} = {result}")
-        elif command == 'power':
-            print(f"{num1} ** {num2} = {result}")
 
-    elif command == 'quit':
+        else:
+            print(f"{num1} {symbols[operations]} {num2} = {result}")
+
+
+
+    elif operations == 'quit':
         print("Goodbye!")
         break
     
